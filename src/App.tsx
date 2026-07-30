@@ -10,6 +10,7 @@ import InventoryPage from './pages/InventoryPage';
 import AdminPage from './pages/AdminPage';
 
 export default function App() {
+  const [showBadge, setShowBadge] = useState(true);
   const [vehicles, setVehicles] = useState<Vehicle[]>(() => loadVehicles());
   const [requests, setRequests] = useState<TestDriveRequest[]>(() => loadRequests());
   const [company, setCompany] = useState<CompanyInfo>(() => loadCompany());
@@ -63,6 +64,25 @@ export default function App() {
     <BrowserRouter>
       <ScrollToTop />
       <FloatingNavbar />
+      <div className="fixed top-20 left-4 z-50 flex items-start gap-2">
+        {showBadge && (
+          <a
+            href="https://artifactss-9895c.web.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-md bg-green-700/90 px-4 py-2 text-sm font-bold text-white shadow-lg backdrop-blur-sm hover:bg-green-700 transition-colors no-underline"
+          >
+            Versión demo / En venta
+          </a>
+        )}
+        <button
+          onClick={() => setShowBadge(!showBadge)}
+          className="rounded-md bg-black/50 px-2 py-2 text-white shadow-lg backdrop-blur-sm hover:bg-black/70 transition-colors text-sm leading-none"
+          aria-label={showBadge ? "Ocultar badge" : "Mostrar badge"}
+        >
+          {showBadge ? "✕" : "👁"}
+        </button>
+      </div>
       <Routes>
         <Route path="/" element={<HomePage vehicles={vehicles} company={company} onContactSubmit={handleContactSubmit} />} />
         <Route path="/inventario" element={<InventoryPage vehicles={vehicles} />} />
