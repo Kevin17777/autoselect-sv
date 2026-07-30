@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "artifactss-9895c"
+  },
+  "targets": {
+    "artifactss-9895c": {
+      "hosting": {
+        "autoselect": [
+          "artifactss-autoselect"
+        ]
+      }
+    }
+  }
+}
